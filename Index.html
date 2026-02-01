@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My First Professional Website</title>
+<style>
+    /* General body styling */
+    body {
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+        background-color: #f9fafb;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    /* Header section */
+    header {
+        background-color: #1abc9c;
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5em;
+    }
+
+    header p {
+        font-size: 1.2em;
+    }
+
+    /* Features section */
+    section.features {
+        max-width: 800px;
+        margin: 50px auto;
+        text-align: center;
+    }
+
+    section.features ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    section.features li {
+        background-color: #ecf0f1;
+        margin: 10px 0;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 1.1em;
+    }
+
+    /* Paystack button styling */
+    #payButton {
+        display: block;
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 50px auto;
+    }
+
+    #payButton:hover {
+        background-color: #c0392b;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #34495e;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 50px;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to My Website!</h1>
+    <p>Your first step to a professional online presence</p>
+</header>
+
+<section class="features">
+    <ul>
+        <li>High-quality website design</li>
+        <li>Secure online payments</li>
+        <li>Fast and responsive layout</li>
+    </ul>
+</section>
+
+<!-- Paystack Payment Button -->
+<button type="button" id="payButton">Pay Now</button>
+
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+  const payButton = document.getElementById("payButton");
+
+  payButton.addEventListener("click", function () {
+    let handler = PaystackPop.setup({
+      key: "pk_test_81374a2363ed52274cf19a2fd22ba7feb9c70cd9", // Replace with your Paystack public key
+      email: "customer@gmail.com",
+      amount: 50000, // ₦500
+      currency: "NGN",
+      ref: "PS_" + Math.floor(Math.random() * 1000000000 + 1),
+      callback: function (response) {
+        alert("Payment complete! Reference: " + response.reference);
+      },
+      onClose: function () {
+        alert("Payment was not completed.");
+      },
+    });
+    handler.openIframe();
+  });
+</script>
+
+<footer>
+    &copy; 2026 My First Professional Website. All rights reserved.
+</footer>
+
+</body>
+</html>
